@@ -6764,3 +6764,15 @@ body {
 
 .message-body {
   padding-left: 1.25rem; }
+
+table.schedule {
+  width: auto; }
+  table.schedule td:first-child {
+    text-align: right;
+    font-weight: bold;
+    border-right: 1px solid #dbdbdb; }
+  table.schedule td {
+    border-bottom: none;
+    padding: 0.1em 0.75em; }
+
+/*# sourceMappingURL=style.css.map */
