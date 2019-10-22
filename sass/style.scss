@@ -107,3 +107,12 @@ table.schedule {
 	margin-top: 1rem;
 	font-weight: bold;
 }
+
+.hero-date {
+	background-color: $light-red;
+	color: white;
+	margin-top: 1rem;
+	display: inline-flex;
+	padding: 0.375em 0.75em;
+	border-radius: 4px;
+}

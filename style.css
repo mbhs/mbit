@@ -6780,3 +6780,11 @@ table.schedule {
   font-size: 1.25rem;
   margin-top: 1rem;
   font-weight: bold; }
+
+.hero-date {
+  background-color: #c54232;
+  color: white;
+  margin-top: 1rem;
+  display: inline-flex;
+  padding: 0.375em 0.75em;
+  border-radius: 4px; }
