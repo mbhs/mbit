@@ -116,3 +116,9 @@ table.schedule {
 	padding: 0.375em 0.75em;
 	border-radius: 4px;
 }
+
+.images {
+	img {
+		object-fit: scale-down;
+	}
+}
