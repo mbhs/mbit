@@ -1,97 +1,79 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define ll long long
-const int MAX = 1e5 + 5;
-const int LOG = 20;
-const ll INF = 1e18;
-
-vector<int> adj[MAX];
-vector<pair<int, int>> routes[MAX];
-
-int depth[MAX];
-int par[MAX][LOG];
-int cost[MAX];
-
-int n, m, k;
-
-void dfs(int cur, int prev) {
-    par[cur][0] = prev;
-    for (int nxt : adj[cur]) {
-        if (nxt == prev)
-            continue;
-        depth[nxt] = depth[cur] + 1;
-        dfs(nxt, cur);
-    }
+vector<pair<double, double>> p;
+const double PI = 4*atan(1);
+double get(pair<double, double> o, pair<double, double> a, pair<double, double> b){
+    double x1 = a.first - o.first;
+    double y1 = a.second - o.second;
+    double x2 = b.first - o.first;
+    double y2 = b.second - o.second;
+    return x1*y2 - y1*x2;
 }
+const int MAX = 5e5 + 5;
+const int MOD = 1e9 + 7;
 
-inline void process() {
-    depth[0] = 0;
-    dfs(0, 0);
-    for (int lvl = 0; lvl < LOG - 1; lvl ++) for (int cur = 0; cur< n; cur++) {
-        int mid = par[cur][lvl];
-        par[cur][lvl + 1] = par[mid][lvl];
-    }
-}
+long long po[MAX];
 
-inline int above(int u, int k) {
-    for (int it = LOG - 1; it >= 0; it--)
-        if (k >= (1 << it)){
-            u = par[u][it];
-            k -= (1<<it);
-        }
-    return u;
-}
 
-int get_ancestor(int top, int bot){
-    if(depth[top]>= depth[bot]){
-        return par[top][0];
+bool check(int x, int y) {
+    int counter = 0;
+    pair<double, double> p1 = p[0], p2;
+    for (int i=1; i<=p.size(); i++) {
+        p2 = p[i % p.size()];
+        if ((p2.first - p1.first) * (y - p1.second) - (p2.second - p1.second) * (x - p1.first) == 0)    // lies on polygon border
+            return false;
+        if (y > min(p1.second, p2.second) && y <= max(p1.second, p2.second) && x <= max(p1.first, p2.first) && p1.second != p2.second && (p1.first == p2.first || x <= (y - p1.second) * (p2.first - p1.first) / (p2.second - p1.second) + p1.first))
+            counter++;
+        p1 = p2;
     }
-    int anc = above(bot, depth[bot] - depth[top] - 1);
-    if(par[anc][0] == top){
-        return anc;
-    }
-    return par[top][0];
+
+    return counter % 2 == 1;
 }
 
 int main(){
-    cin >> n >> m >> k;
-    for(int i = 0; i<n-1; i++){
-        int u, v;
-        cin >> u >> v;
-        u--; v--;
-        adj[u].emplace_back(v); adj[v].emplace_back(u);
-    }
-    for(int i = 0; i<m; i++){
-        int u, v, w;
-        cin >> u >> v >> w;
-        u--; v--;
-        routes[u].emplace_back(make_pair(v, w));
-        routes[v].emplace_back(make_pair(u, w));
-    }
-    process();
-    ll ans = INF;
+    int n, q;
+    cin >> n >> q;
     for(int i = 0; i<n; i++){
-        map<int, multiset<ll>> sub;
-        for(int j = 0; j<routes[i].size(); j++){
-            sub[get_ancestor(i, routes[i][j].first)].insert(routes[i][j].second);
+        int x, y;
+        cin >> x >> y;
+        p.emplace_back(make_pair(x, y));
+    }
+    for(int i = 0; i<MAX; i++){
+        if(i == 0) po[i] = 1;
+        else po[i] = (po[i-1]*2)%MOD;
+    }
+    while(q--){
+        long long N = n;
+        long long tot = po[n] - N - 1 - N*(N-1)/2;
+        double x, y;
+        cin >> x >> y;
+        if(check(x, y) == 0){
+            cout << 0 << endl;
+            continue;
         }
-        for(auto x: sub){
-            if((x.second).size() >= k){
-                ll val = 0;
-                int cnt = 0;
-                for(auto num: x.second){
-                    val += num;
-                    cnt++;
-                    if(cnt == k) break;
-                }
-                ans = min(ans, val);
+        pair<double, double> o = make_pair(x, y);
+        int j = 1;
+        for(int i = 0; i<n; i++){
+            while(get(o, p[i], p[j])>0){
+                j++;
+                j%=n;
             }
+
+            if(i == j) continue;
+            int between;
+            if(i<= j){
+                between = j - i + 1;
+            }
+            else{
+                between = n-1 - i + 1 +j+1;
+            }
+            int choose = n - between + 1;
+            tot -= (po[choose] - 1 - choose);
+            tot %= MOD;
+            tot += MOD;
+            tot %= MOD;
         }
+        cout << tot << endl;
     }
-    if(ans == INF) {
-        cout << -1  << endl;
-        return 0;
-    }
-    cout << ans << endl;
     return 0;
 }
