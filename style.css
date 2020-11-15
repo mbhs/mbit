@@ -10222,6 +10222,9 @@ table.schedule td {
   padding: 0.375em 0.75em;
   border-radius: 4px;
 }
+.hero-date a {
+  text-decoration: none !important;
+}
 
 .images img {
   object-fit: scale-down;
