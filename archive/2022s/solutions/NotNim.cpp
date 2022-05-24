@@ -1,9 +1,9 @@
-//int max = 2 147 483 647 (2^31-1)
-//ll max = 9 223 372 036 854 775 807 (2^63-1)
-#include<bits/stdc++.h>
+// int max = 2 147 483 647 (2^31-1)
+// ll max = 9 223 372 036 854 775 807 (2^63-1)
+#include <bits/stdc++.h>
 using namespace std;
 
-#define forn(i,n) for(int i=0;i<n;i++)
+#define forn(i, n) for (int i = 0; i < n; i++)
 #define mp make_pair
 #define f first
 #define s second
@@ -14,45 +14,60 @@ typedef long long ll;
 typedef long double ld;
 typedef vector<int> vi;
 typedef vector<ll> vl;
-typedef pair<int,int> pi;
+typedef pair<int, int> pi;
 
-//Fast input and output
-void fast_io(){
-  ios_base::sync_with_stdio(0);
-  cin.tie(NULL);
-  cout.tie(NULL);}
+// Fast input and output
+void fast_io() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(NULL);
+    cout.tie(NULL);
+}
 
-//Printing pairs and vectors
-template<typename A, typename B> ostream& operator<< (ostream &cout, pair<A,B> const &p)
-{return cout << "(" << p.f << ", " << p.s << ")";}
-template<typename A> ostream& operator<< (ostream &cout, vector<A> const&v)
-{cout << "["; forn(i,(int)v.size()){ if (i) cout << ", "; cout << v[i];} return cout << "]";}
+// Printing pairs and vectors
+template <typename A, typename B>
+ostream &operator<<(ostream &cout, pair<A, B> const &p) { return cout << "(" << p.f << ", " << p.s << ")"; }
+template <typename A>
+ostream &operator<<(ostream &cout, vector<A> const &v) {
+    cout << "[";
+    forn(i, (int)v.size()) {
+        if (i) cout << ", ";
+        cout << v[i];
+    }
+    return cout << "]";
+}
 
 mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
-//use uniform_int_distribution<int>(a, b)(rng) if you want [a, b].
+// use uniform_int_distribution<int>(a, b)(rng) if you want [a, b].
 
-int main(){
-  fast_io();
-  int test; cin >> test;
-  forn(tc,test){
-    int n; cin >> n;
-    int a,b; cin >> a >> b;
-    vi p(n);
-    forn(i,n) cin >> p[i];
-    forn(i,n) p[i]=p[i]%(a+b);
-    priority_queue<int> pq;
-    forn(i,n) pq.push(p[i]);
-    string winner="Alice";
-    while(true){
-      int k=pq.top(); pq.pop();
-      if(k<a){
-        winner ="Bob"; break;}
-      pq.push(k-a);
-      k=pq.top(); pq.pop();
-      if(k<b) break;
-      pq.push(k-b);
+int main() {
+    fast_io();
+    int test;
+    cin >> test;
+    forn(tc, test) {
+        int n;
+        cin >> n;
+        int a, b;
+        cin >> a >> b;
+        vi p(n);
+        forn(i, n) cin >> p[i];
+        forn(i, n) p[i] = p[i] % (a + b);
+        priority_queue<int> pq;
+        forn(i, n) pq.push(p[i]);
+        string winner = "Alice";
+        while (true) {
+            int k = pq.top();
+            pq.pop();
+            if (k < a) {
+                winner = "Bob";
+                break;
+            }
+            pq.push(k - a);
+            k = pq.top();
+            pq.pop();
+            if (k < b) break;
+            pq.push(k - b);
+        }
+        cout << winner << "\n";
     }
-    cout << winner << "\n";
-  }
 }
-//code by DanTheMan
+// code by DanTheMan
