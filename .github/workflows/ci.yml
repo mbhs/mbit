@@ -30,4 +30,4 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
       - name: Pull
-        run: cd /srv/http/mbit && git pull
+        run: ssh srv "cd /srv/http/mbit && git pull && exit"
