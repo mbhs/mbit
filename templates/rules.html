@@ -1,23 +1,33 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <section class="hero has-background-primary">
-	<div class="hero-body">
-		<div class="container">
-			<h1 class="title is-1"><span class="has-text-white">Rules</span></h1>
-		</div>
-	</div>
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title is-1">
+                <span class="has-text-white">Rules</span>
+            </h1>
+        </div>
+    </div>
 </section>
 <section class="section">
-	<div class="container">
-		<h2 class="subtitle is-4">Teams</h2>
-		<div class="content">
-			<p><strong>Anyone</strong> is eligible to participate in the competition. Participants may compete in <strong>teams of up to three</strong> and are allowed to access reference books and the internet; however, they are encouraged to cite sources if they use code found online. Directly asking for assistance during the competion from anyone other than tournament organizers is not permitted. The use of generative AI is strictly prohibited. This includes models such as all versions of ChatGPT, Claude, and CoPilot.</p>
-			<!-- <p>There are three divisions: <strong>standard and advanced.</strong> Standard division concepts include lists, loops, recursion, and algorithms such as BFS and binary search. Problems in the advanced division emphasize algorithmic complexity and efficiency, with concepts including pathfinding, dynamic programming, and segment trees.</p> -->
-			<!-- <p>Generally speaking, standard division problems range from Bronze to low Gold USACO levels, while the advanced division problems range from Silver to Platinum. Take a look at our <a href="/archive">archive</a> to get a sense of the difficulty of each division. The sample problems on the <a href="/">home page</a> can serve as additional guidance for which division to choose.</p> -->
-		</div>
-		<h2 class="subtitle is-4">Prizes</h2>
-		<!--
+    <div class="container">
+        <h2 class="subtitle is-4">Teams</h2>
+        <div class="content">
+            <p>
+                <strong>Anyone</strong> is eligible to participate in the
+                competition. Participants may compete in
+                <strong>teams of up to three</strong> and are allowed to access
+                reference books and the internet; however, they are encouraged
+                to cite sources if they use code found online. Directly asking
+                for assistance during the competion from anyone other than
+                tournament organizers is not permitted. The use of generative AI
+                is strictly prohibited. This includes models such as all
+                versions of ChatGPT, Claude, and CoPilot.
+            </p>
+            <!-- <p>There are three divisions: <strong>standard and advanced.</strong> Standard division concepts include lists, loops, recursion, and algorithms such as BFS and binary search. Problems in the advanced division emphasize algorithmic complexity and efficiency, with concepts including pathfinding, dynamic programming, and segment trees.</p> -->
+            <!-- <p>Generally speaking, standard division problems range from Bronze to low Gold USACO levels, while the advanced division problems range from Silver to Platinum. Take a look at our <a href="/archive">archive</a> to get a sense of the difficulty of each division. The sample problems on the <a href="/">home page</a> can serve as additional guidance for which division to choose.</p> -->
+        </div>
+        <h2 class="subtitle is-4">Prizes</h2>
+        <!--
 		<div class="content">
 			<p>Teams of students who have not yet graduated from high school (or have graduated this year) will be eligible for prizes reserved for high school teams (in both divisions). In the advanced division, there will <strong>also</strong> be prizes for top teams that are not necessarily composed of high school students. All high school (and middle school) competitors should indicate the name of the school they attend and their grade during registration.</p>
 		</div>
@@ -46,33 +56,48 @@
 		</div>
 		<p>All prize winners will get a Wolfram|Alpha Pro subscription, and the top middle school Standard team will receive AoPS coupons.</p> 
 		-->
-		<div class="content">
-			<p>Over $800 in prize money will be awarded. The prize distribution will be announced soon.</p>
-		</div>
-		<!-- <div class="content"> -->
-		<!-- 	<p>In-person:</p> -->
-		<!-- 	<ul> -->
-		<!-- 		<li>Advanced top 3: $40, $30, $20</li> -->
-		<!-- 		<li>Standard top 3: $20, $15, $10</li> -->
-		<!-- 		<li>mBIT Laptop Stickers</li> -->
-		<!-- 		<li>$20 to top middle school team</li> -->
-		<!-- 		<li>Prize winners receive mBIT T-shirt</li> -->
-		<!-- 	</ul> -->
-		<!-- </div> -->
-		<!-- <div class="content"> -->
-		<!-- 	<p>Virtual:</p> -->
-		<!-- 	<ul> -->
-		<!-- 		<li>Advanced top 2: $40, $20</li> -->
-		<!-- 	</ul> -->
-		<!-- </div> -->
-		<h2 class="subtitle is-4">Grading</h2>
-		<div class="content">
-			<p>Grading will take place on codeforces. Scoring is done <b>ICPC</b> style (each problem is worth one point and no partial credit with ties based on time/incorrect submissions). Test cases are designed so that all incorrect submissions should be rejected.</p>
-		</div>
-		<h2 class="subtitle is-4">Conduct</h2>
-		<div class="content">
-			<p>All students are expected to <strong>behave appropriately.</strong> This includes being respectful to others, following competition rules, and just using common sense. Violation of any of these rules is grounds for disqualification from the competition.</p>
-		</div>
-	</div>
+        <div class="content">
+            <p>
+                Over $800 in prize money will be awarded. The prize distribution
+                will be announced soon.
+            </p>
+        </div>
+        <!-- <div class="content"> -->
+        <!-- 	<p>In-person:</p> -->
+        <!-- 	<ul> -->
+        <!-- 		<li>Advanced top 3: $40, $30, $20</li> -->
+        <!-- 		<li>Standard top 3: $20, $15, $10</li> -->
+        <!-- 		<li>mBIT Laptop Stickers</li> -->
+        <!-- 		<li>$20 to top middle school team</li> -->
+        <!-- 		<li>Prize winners receive mBIT T-shirt</li> -->
+        <!-- 	</ul> -->
+        <!-- </div> -->
+        <!-- <div class="content"> -->
+        <!-- 	<p>Virtual:</p> -->
+        <!-- 	<ul> -->
+        <!-- 		<li>Advanced top 2: $40, $20</li> -->
+        <!-- 	</ul> -->
+        <!-- </div> -->
+        <h2 class="subtitle is-4">Grading</h2>
+        <div class="content">
+            <p>
+                Grading will take place on codeforces. Scoring is done
+                <b>ICPC</b> style (each problem is worth one point and no
+                partial credit with ties based on time/incorrect submissions).
+                Test cases are designed so that all incorrect submissions should
+                be rejected.
+            </p>
+        </div>
+        <h2 class="subtitle is-4">Conduct</h2>
+        <div class="content">
+            <p>
+                All participants are expected to
+                <strong>behave appropriately.</strong> This includes being
+                respectful to others, following competition rules, and just
+                using common sense. Violation of any of these rules is grounds
+                for disqualification from the competition.
+            </p>
+        </div>
+    </div>
 </section>
 {% endblock %}

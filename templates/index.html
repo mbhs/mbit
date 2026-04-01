@@ -1,140 +1,340 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <section class="hero has-background-primary is-medium">
-	<div class="hero-body">
-		<div class="container">
-			<div class="columns is-centered">
-				<div class="column is-half">
-					<article class="message">
-						<div class="message-header has-background-white">
-							<h1 class="title big has-text-centered">
-								<span class="has-text-primary">m</span><span class="has-text-grey">BIT</span>
-							</h1>
-						</div>
-						<div class="message-body">
-							<h2 class="subtitle has-text-centered is-family-monospace">
-								<p>Montgomery Blair Informatics Tournament</p>
-								<!-- <p>June 1, 2025</p> -->
-								<p class="hero-date"><strong><a href="https://discord.gg/Jtr3EpA2XR">Join Discord</a></strong></p> <p class="hero-date" id="countdown"><strong></strong></p>
-							</h2>
-						</div>
-					</article>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-half">
+                    <article class="message">
+                        <div class="message-header has-background-white">
+                            <h1 class="title big has-text-centered">
+                                <span class="has-text-primary">m</span
+                                ><span class="has-text-grey">BIT</span>
+                            </h1>
+                        </div>
+                        <div class="message-body">
+                            <h2
+                                class="subtitle has-text-centered is-family-monospace"
+                            >
+                                <p>Montgomery Blair Informatics Tournament</p>
+                                <!-- <p>June 1, 2025</p> -->
+                                <p class="hero-date">
+                                    <strong
+                                        ><a href="https://discord.gg/Jtr3EpA2XR"
+                                            >Join Discord</a
+                                        ></strong
+                                    >
+                                </p>
+                                <p class="hero-date">
+                                    <a
+                                        href="https://forms.gle/H58Ku2scHZ19AbTcA"
+                                        ><strong
+                                            >Register for mBIT 2026!</strong
+                                        ></a
+                                    >
+                                </p>
+                                <p class="is-size-6 mt-2" id="countdown"></p>
+                            </h2>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-<script>
-var countDownDate = new Date("Jun 1, 2025 08:00:00").getTime();
-var x = setInterval(function(){
-	var now = new Date().getTime();
-	var distance = countDownDate - now;
-	var days = Math.floor(distance / (1000 * 60 * 60 * 24));
- 	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-	  document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("countdown").innerHTML = "Tune in for mBIT 2026!";
-  }
-}, 1000);
+<!-- Countdown -->
+<script>
+    const competitionStart = new Date("2026-06-06 10:00:00");
+    const setTimeDiff = (diff) => {
+        let temp = diff;
+
+        const diffDays = Math.floor(temp / 86400);
+        const diffDaysString = diffDays < 10 ? "0" + diffDays : diffDays;
+        temp -= diffDays * 86400;
+
+        const diffHours = Math.floor(temp / 3600);
+        const diffHoursString = diffHours < 10 ? "0" + diffHours : diffHours;
+        temp -= diffHours * 3600;
+
+        const diffMinutes = Math.floor(temp / 60);
+        const diffMinutesString =
+            diffMinutes < 10 ? "0" + diffMinutes : diffMinutes;
+        temp -= diffMinutes * 60;
+
+        const diffSeconds = Math.floor(temp);
+        const diffSecondsString =
+            diffSeconds < 10 ? "0" + diffSeconds : diffSeconds;
+
+        document.getElementById("countdown").innerHTML =
+            `${diffDaysString} days remaining...`;
+    };
+    setTimeDiff((competitionStart - Date.now()) / 1000);
+    const x = setInterval(() => {
+        const now = Date.now();
+        const diffSeconds = (competitionStart - now) / 1000;
+        if (diffSeconds < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").style.display = "none";
+        }
+        setTimeDiff(diffSeconds);
+    }, 1000);
 </script>
 <section class="section">
-	<div class="container">
-		<div class="tile is-ancestor columns is-centered info-boxes">
-			<div class="tile is-parent is-10">
-				<div class="tile is-child">
-					<div class="columns">
-						<div class="column">
-							<div class="message has-background-white">
-								<div class="is-size-5 message-header has-background-info">
-								<h1 class="title is-size-5 has-text-white">Compete with peers.</h1>
-							</div>
-								<div class="message-body has-background-white is-size-6">
-									<p>Come join fellow students across the region and across the world in a fun and friendly competition. Show off your programming knowledge and win awards!</p>
-								</div>
-							</div>
-						</div>
-						<div class="column">
-							<div class="message has-background-white">
-								<div class="is-size-5 message-header has-background-info">
-								<h1 class="title is-size-5 has-text-white">Collaborate with friends.</h1>
-							</div>
-								<div class="message-body has-background-white">
-									<p>Bring up to three of your friends and form a team. Successful programmers are also helpful and supportive teammates. Work together!</p>
-								</div>
-							</div>
-						</div>
-						<div class="column">
-							<div class="message has-background-white">
-								<div class="is-size-5 message-header has-background-info">
-								<h1 class="title is-size-5 has-text-white">Code something new.</h1>
-							</div>
-								<div class="message-body has-background-white">
-									<p>Whether you're a programming rookie or a coding veteran, these questions will make you think in new and creative ways. Everyone will learn something new!</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<hr class="divider">
-		<div class="tile is-ancestor columns is-centered">
-			<div class="tile is-vertical is-parent is-5">
-				<div class="message info-box is-child tile has-background-white">
-					<div class="is-size-5 message-header has-background-light">
-						<h1 class="title is-size-3 has-text-slightly-dark-grey">Overview</h1>
-					</div>
-					<div class="message-body has-background-white content">
-						<p>mBIT is a competitive programming competition for computer science students of all skill levels, organized by students from Montgomery Blair High School.</p>
-						<p>Competitors work in <strong>teams of up to three</strong> to solve interesting and challenging programming problems. There are prizes for the top teams in each division.</p>
-						<p>For more information, be sure to visit the <a href="/logistics">logistics</a> and <a href="/rules">rules</a> pages. If you have any questions about the competition, feel free to email us at <a href="mailto:mbit.organizers@gmail.com">mbit.organizers@gmail.com</a>.</p>
-						<p>If you are looking to practice for the competition, <a href="/archive">past mBIT problems</a>, <a href="http://www.usaco.org/index.php?page=contests">old USACO problems</a>, and the <a href="https://train.usaco.org/usacogate">USACO training pages</a> are great places to start. Keep in mind that the problems in the competition will primarily focus on thinking and problem solving, not rote memorization of algorithms and data structures.</p>
-					</div>
-				</div>
-			</div>
-			<div class="tile is-vertical is-parent is-5">
-				<div class="message info-box is-child tile has-background-white">
-					<div class="is-size-5 message-header has-background-light">
-						<h1 class="title is-size-3 has-text-slightly-dark-grey">Choosing a Division</h1>
-					</div>
-					<div class="message-body has-background-white content">
-						<p>For the first time ever mBIT will offer three divisions for teams to compete in. The divisions vary based on problem difficulty, with many problems overlapping between divisions. All divisions will have prizes so please sign up for the one in which <b>you will learn the most from.</b></p>
-						<p>Beginner: The beginner division is recommended for teams who know how to code but are relatively new to programming competitions, and for teams in the bronze level of USACO. The majority of the problems will be solvable in less than 15 lines of code and will focus on coding proficiency (ability to handle input/output, conditionals, loops, and lists) and will require no complex algorithms. Towards the end of the problemset, there will be problems in the bronze and silver level.</p>
-						<p>Intermediate: The intermediate division is recommended for teams in the silver and gold levels in USACO. There will be at least one problem in each of the bronze, silver, gold, and platinum levels, with the majority in the silver and gold level. Competitors should have experience with algorithmic techniques such as graph traversals, binary search, and any other topic in the silver-gold modules of USACO guide.</p>
-						<p>Advanced: The advanced division is recommended for teams in the platinum levels and above. There will be fewer problems in this division, with most problems in the hard gold to platinum levels. The hardest problem is around 3000 codeforces rating.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="tile is-ancestor columns is-centered">
-			<div class="tile is-parent is-10">
-				<div class="message info-box is-child tile">
-					<div class="is-size-5 message-header has-background-light">
-						<h1 class="title is-size-3 has-text-slightly-dark-grey">Sponsors</h1>
-					</div>
-					<div class="message-body has-background-white">
-						<p>mBIT is proudly sponsored by <a href="https://www.unither.com">United Therapeutics</a>, <a href="https://artofproblemsolving.com/">Art of Problem Solving</a>, <a href="https://www.mbhsmagnet.org/">Magnet Foundation</a>, <a href="https://www.janestreet.com/">Jane Street</a>, and <a href="https://www.non-trivial.org/">Non-Trivial</a>.
-							<p style="display: flex; align-items: center; margin-top: 1em; margin-bottom: 1em;">
-							
-								<a href="https://www.unither.com"><img src="/unither.png" style="padding-right: 1em;"></a>
-								<a href="https://artofproblemsolving.com/"><img src="/aops.svg" width=220 style="margin-left: -13px"></a>
-								<a href="https://www.mbhsmagnet.org/"><img src="/magnet.png" width=120 style="margin-left: -13px"></a>
-								<a href="https://www.janestreet.com/"><img src="/janestreet.png" width=220 style="margin-left: 10px"></a>
-								
-							
-							</p>
-							<p style="display: flex; align-items: center; margin-top: 1em; margin-bottom: 1em;"><a href="https://www.non-trivial.org/"><img src="/non-trivial1.png" width=220 style="padding-right: 1em;"></a></p>
-						<p>Interested in sponsoring? Send us an email at <a href="mailto:mbit.organizers@gmail.com">mbit.organizers@gmail.com</a>.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="tile is-ancestor columns is-centered info-boxes">
+            <div class="tile is-parent is-10">
+                <div class="tile is-child">
+                    <div class="columns">
+                        <div class="column">
+                            <div class="message has-background-white">
+                                <div
+                                    class="is-size-5 message-header has-background-info"
+                                >
+                                    <h1 class="title is-size-5 has-text-white">
+                                        Compete with peers.
+                                    </h1>
+                                </div>
+                                <div
+                                    class="message-body has-background-white is-size-6"
+                                >
+                                    <p>
+                                        Come join fellow students across the
+                                        region and across the world in a fun and
+                                        friendly competition. Show off your
+                                        programming knowledge and win awards!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="message has-background-white">
+                                <div
+                                    class="is-size-5 message-header has-background-info"
+                                >
+                                    <h1 class="title is-size-5 has-text-white">
+                                        Collaborate with friends.
+                                    </h1>
+                                </div>
+                                <div class="message-body has-background-white">
+                                    <p>
+                                        Bring up to three of your friends and
+                                        form a team. Successful programmers are
+                                        also helpful and supportive teammates.
+                                        Work together!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="message has-background-white">
+                                <div
+                                    class="is-size-5 message-header has-background-info"
+                                >
+                                    <h1 class="title is-size-5 has-text-white">
+                                        Code something new.
+                                    </h1>
+                                </div>
+                                <div class="message-body has-background-white">
+                                    <p>
+                                        Whether you're a programming rookie or a
+                                        coding veteran, these questions will
+                                        make you think in new and creative ways.
+                                        Everyone will learn something new!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="divider" />
+        <div class="tile is-ancestor columns is-centered">
+            <div class="tile is-vertical is-parent is-5">
+                <div
+                    class="message info-box is-child tile has-background-white"
+                >
+                    <div class="is-size-5 message-header has-background-light">
+                        <h1 class="title is-size-3 has-text-slightly-dark-grey">
+                            Overview
+                        </h1>
+                    </div>
+                    <div class="message-body has-background-white content">
+                        <p>
+                            mBIT is a competitive programming competition for
+                            computer science students of all skill levels,
+                            organized by students from Montgomery Blair High
+                            School.
+                        </p>
+                        <p>
+                            Competitors work in
+                            <strong>teams of up to three</strong> to solve
+                            interesting and challenging programming problems.
+                            There are prizes for the top teams in each division.
+                        </p>
+                        <p>
+                            For more information, be sure to visit the
+                            <a href="/logistics">logistics</a> and
+                            <a href="/rules">rules</a> pages. If you have any
+                            questions about the competition, feel free to email
+                            us at
+                            <a href="mailto:mbit.organizers@gmail.com"
+                                >mbit.organizers@gmail.com</a
+                            >.
+                        </p>
+                        <p>
+                            If you are looking to practice for the competition,
+                            <a href="/archive">past mBIT problems</a>,
+                            <a
+                                href="http://www.usaco.org/index.php?page=contests"
+                                >old USACO problems</a
+                            >, and the
+                            <a href="https://train.usaco.org/usacogate"
+                                >USACO training pages</a
+                            >
+                            are great places to start. Keep in mind that the
+                            problems in the competition will primarily focus on
+                            thinking and problem solving, not rote memorization
+                            of algorithms and data structures.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="tile is-vertical is-parent is-5">
+                <div
+                    class="message info-box is-child tile has-background-white"
+                >
+                    <div class="is-size-5 message-header has-background-light">
+                        <h1 class="title is-size-3 has-text-slightly-dark-grey">
+                            Choosing a Division
+                        </h1>
+                    </div>
+                    <div class="message-body has-background-white content">
+                        <p>
+                            mBIT will offer three divisions for teams to compete
+                            in. The divisions vary based on problem difficulty,
+                            with many problems overlapping between divisions.
+                            All divisions will have prizes so please sign up for
+                            the one in which
+                            <b>you will learn the most from.</b>
+                        </p>
+                        <p>
+                            <strong>Beginner</strong>: The beginner division is
+                            recommended for teams who know how to code but are
+                            relatively new to programming competitions, and for
+                            teams in the bronze level of USACO. The majority of
+                            the problems will be solvable in less than 15 lines
+                            of code and will focus on coding proficiency
+                            (ability to handle input/output, conditionals,
+                            loops, and lists) and will require no complex
+                            algorithms. Towards the end of the problemset, there
+                            will be problems in the bronze and silver level.
+                        </p>
+                        <p>
+                            <strong>Intermediate</strong>: The intermediate
+                            division is recommended for teams in the silver and
+                            gold levels in USACO. There will be at least one
+                            problem in each of the bronze, silver, gold, and
+                            platinum levels, with the majority in the silver and
+                            gold level. Competitors should have experience with
+                            algorithmic techniques such as graph traversals,
+                            binary search, and any other topic in the
+                            silver-gold modules of USACO guide.
+                        </p>
+                        <p>
+                            <strong>Advanced</strong>: The advanced division is
+                            recommended for teams in the platinum levels and
+                            above. There will be fewer problems in this
+                            division, with most problems in the hard gold to
+                            platinum levels.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tile is-ancestor columns is-centered">
+            <div class="tile is-parent is-10">
+                <div class="message info-box is-child tile">
+                    <div class="is-size-5 message-header has-background-light">
+                        <h1 class="title is-size-3 has-text-slightly-dark-grey">
+                            Sponsors
+                        </h1>
+                    </div>
+                    <div class="message-body has-background-white">
+                        <p>
+                            mBIT is proudly sponsored by
+                            <a href="https://www.unither.com"
+                                >United Therapeutics</a
+                            >,
+                            <a href="https://artofproblemsolving.com/"
+                                >Art of Problem Solving</a
+                            >,
+                            <a href="https://www.mbhsmagnet.org/"
+                                >Magnet Foundation</a
+                            >,
+                            <a href="https://www.janestreet.com/">Jane Street</a
+                            >, and
+                            <a href="https://www.non-trivial.org/"
+                                >Non-Trivial</a
+                            >.
+                        </p>
+                        <p
+                            style="
+                                display: flex;
+                                align-items: center;
+                                margin-top: 1em;
+                                margin-bottom: 1em;
+                            "
+                        >
+                            <a href="https://www.unither.com"
+                                ><img
+                                    src="/unither.png"
+                                    style="padding-right: 1em"
+                            /></a>
+                            <a href="https://artofproblemsolving.com/"
+                                ><img
+                                    src="/aops.svg"
+                                    width="220"
+                                    style="margin-left: -13px"
+                            /></a>
+                            <a href="https://www.mbhsmagnet.org/"
+                                ><img
+                                    src="/magnet.png"
+                                    width="120"
+                                    style="margin-left: -13px"
+                            /></a>
+                            <a href="https://www.janestreet.com/"
+                                ><img
+                                    src="/janestreet.png"
+                                    width="220"
+                                    style="margin-left: 10px"
+                            /></a>
+                        </p>
+                        <p
+                            style="
+                                display: flex;
+                                align-items: center;
+                                margin-top: 1em;
+                                margin-bottom: 1em;
+                            "
+                        >
+                            <a href="https://www.non-trivial.org/"
+                                ><img
+                                    src="/non-trivial1.png"
+                                    width="220"
+                                    style="padding-right: 1em"
+                            /></a>
+                        </p>
+                        <p>
+                            Interested in sponsoring? Send us an email at
+                            <a href="mailto:mbit.organizers@gmail.com"
+                                >mbit.organizers@gmail.com</a
+                            >.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock %}
