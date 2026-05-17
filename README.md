@@ -5,7 +5,7 @@
     1. cd into the directory
     2. Run `staticjinja watch` to automatically re-render files
         - [Install `staticjinja`](https://staticjinja.github.io/staticjinja/)
-    3. Run `sass -w ./sass/style.scss:./style.scss` to automatically recompile css
+    3. Run `sass -w ./sass/style.scss:./style.css` to automatically recompile css
         - [Install dart sass](https://sass-lang.com/dart-sass/)
     4. Run `http.server` to host the server on `http://localhost:8000`
 3. Commit and push your changes to github.
