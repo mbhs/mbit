@@ -120,11 +120,12 @@
 
 <!-- Countdown -->
 <script>
-    const competitionStart = new Date("2026-06-06 10:00:00");
+    // Number of milliseconds since competition start
+    const competitionStart = new Date("2026-06-06 10:00:00").valueOf();
     const setTimeDiff = (diff) => {
         let temp = diff;
 
-        const diffDays = Math.floor(temp / 86400);
+        const diffDays = Math.floor(temp / 86400) + 1;
         const diffDaysString = diffDays < 10 ? "0" + diffDays : diffDays;
         temp -= diffDays * 86400;
 
@@ -144,6 +145,7 @@
         document.getElementById("countdown").innerHTML =
             `${diffDaysString} days remaining...`;
     };
+    // Calculate the difference between
     setTimeDiff((competitionStart - Date.now()) / 1000);
     const x = setInterval(() => {
         const now = Date.now();
